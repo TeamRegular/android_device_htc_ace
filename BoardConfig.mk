@@ -1,0 +1,61 @@
+USE_CAMERA_STUB := true
+
+# inherit from the proprietary version
+-include vendor/htc/ace/BoardConfigVendor.mk
+
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+TARGET_BOARD_PLATFORM := msm7x30
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_VARIANT := cortex-a8
+TARGET_BOOTLOADER_BOARD_NAME := spade
+
+BOARD_KERNEL_CMDLINE := no_console_suspend=1 androidboot.selinux=permissive
+BOARD_KERNEL_RECOVERY_CMDLINE := $(BOARD_KERNEL_CMDLINE) msmsdcc_power_gpio=88
+BOARD_KERNEL_BASE := 0x4000000
+BOARD_KERNEL_PAGE_SIZE := 4096
+
+# cat /proc/emmc
+#dev:        size     erasesize name
+#mmcblk0p17: 00040000 00000200 "misc"
+#mmcblk0p21: 0087f400 00000200 "recovery"
+#mmcblk0p22: 00400000 00000200 "boot"
+#mmcblk0p25: 22dffe00 00000200 "system"
+#mmcblk0p27: 12bffe00 00000200 "cache"
+#mmcblk0p26: 496ffe00 00000200 "userdata"
+#mmcblk0p28: 014bfe00 00000200 "devlog"
+#mmcblk0p29: 00040000 00000200 "pdata"
+
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 585101312
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1232072704
+BOARD_BOOTIMAGE_PARTITION_SIZE := 4194304
+BOARD_FLASH_BLOCK_SIZE := 262144
+
+# Recovery
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_FSTAB := device/htc/ace/rootdir/fstab.spade
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+DEVICE_RESOLUTION := 480x800
+TW_FLASH_FROM_STORAGE := true
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_INCLUDE_DUMLOCK := true
+TW_INCLUDE_JB_CRYPTO := true
+
+TARGET_PREBUILT_KERNEL := device/htc/ace/kernel
+
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
+BOARD_VOLD_MAX_PARTITIONS := 36
+
+BOARD_HAS_NO_SELECT_BUTTON := true
